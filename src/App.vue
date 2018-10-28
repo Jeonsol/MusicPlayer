@@ -6,31 +6,28 @@
     </div>
     <h1>Play List</h1>
     <ul class="list_set box">
-      <list />
+      <list v-for="list in musicPlayList" :key="list.title" :list="list" />
     </ul>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import PlayBox from './components/PlayBox'
 import List from './components/List'
 
 export default {
   name: 'App',
+  computed: {
+    ...mapState(['musicPlayList'])
+  },
   components: {
     list: List,
     'play-box': PlayBox
   },
   mounted () {
     this.axios.get('https://cors.io/?https://www.melon.com/chart/index.htm').then((response) => {
-      console.log(response.data)
-      /*
-        user_id: {
-          title: '',
-          artist: '',
-          playTime: ''
-        }
-       */
+      this.$store.commit('setPlayList', response.data)
     })
   }
 }
