@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p class="title">노래제목 - 가수명</p>
-    <p class="time">00:00</p>
+    <p class="title">{{ this.$store.state.currentMusic.title }}</p>
+    <p class="time">{{ this.$store.state.currentMusic.playTime }}</p>
     <div class="button_area">
       <button type="button" class="button play">재생</button>
       <button type="button" class="button play">중지</button>
@@ -11,9 +11,14 @@
   </div>
 </template>
 
-<script>
+<script >
+import { mapState } from 'vuex'
+
 export default {
-  name: 'PlayBox'
+  name: 'PlayBox',
+  computed: {
+    ...mapState(['currentMusic'])
+  }
 }
 </script>
 
