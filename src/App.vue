@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!--<h1>Music Player</h1>-->
+    <h1>Music Player</h1>
     <div class="music_player_wrap box">
       <play-box />
     </div>
-    <!--<h1>Play List</h1>-->
+    <h1>Play List</h1>
     <ul class="list_set box">
       <list v-for="list in musicPlayList" :key="list.title" :list="list" />
     </ul>
